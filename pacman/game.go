@@ -8,21 +8,19 @@ type Game struct {
 
 func NewGame() *Game{
 	g := &Game{}
+	g.scene = newScene(nil);
 	return g
 }
 
 func (g *Game) ScreenWidth() int {
-	return 320
+	return g.scene.ScreenWidth()
 }
 
 func (g *Game) ScreenHeight() int {
-	return 240
+	return g.scene.ScreenHeight()
 }
 
 func (g *Game) Update(screen *ebiten.Image) error{
-	if(g.scene == nil){
-		g.scene = newScene()
-	}
 	return g.scene.update(screen)
 }
 
