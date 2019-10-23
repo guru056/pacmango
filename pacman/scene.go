@@ -10,12 +10,13 @@ import (
 
 
 type scene struct{
-	matrix 		[][]elem
-	wallSurface *ebiten.Image
-	images      map[elem]*ebiten.Image
-	stage		*stage
-	dotManager  *dotManager
-	bigDotManager  *bigDotManager
+	matrix 			[][]elem
+	wallSurface 	*ebiten.Image
+	images      	map[elem]*ebiten.Image
+	stage			*stage
+	dotManager  	*dotManager
+	bigDotManager  	*bigDotManager
+	player 			*player
 }
 
 func newScene(st *stage) *scene{
@@ -60,6 +61,8 @@ func (s *scene) createStage() {
 				s.dotManager.add(i,j)
 			case bigDotElem:
 				s.bigDotManager.add(i,j)
+			case playerElem:
+				s.player = newPlayer(i, j)
 			}
 		}
 	}
@@ -120,5 +123,6 @@ func (s *scene) update(screen *ebiten.Image) error {
 	screen.DrawImage(s.wallSurface, nil)
 	s.dotManager.draw(screen)
 	s.bigDotManager.draw(screen)
+	s.player.draw(screen)
 	return nil
 }
