@@ -6,6 +6,10 @@ type Game struct {
 	scene *scene
 }
 
+type pos struct {
+	x,y int
+}
+
 func NewGame() *Game{
 	g := &Game{}
 	g.scene = newScene(nil);

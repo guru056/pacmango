@@ -18,7 +18,7 @@ const (
 	w7
 	w8
 	w9
-	w10
+	w10 // a
 	w11
 	w12
 	w13
@@ -33,13 +33,13 @@ const (
 	w22
 	w23
 	w24
-	playerElem
-	bigDotElem
-	dotElem
-	empty
-	blinkyElem
-	clydeElem
-	inkyElem
-	pinkyElem
+	playerElem // p
+	bigDotElem // q
+	dotElem    // r
+	empty      // s
+	blinkyElem // t
+	clydeElem  // u
+	inkyElem   // v
+	pinkyElem  // w
 	backgroundElem
 )

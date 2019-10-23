@@ -14,6 +14,8 @@ type scene struct{
 	wallSurface *ebiten.Image
 	images      map[elem]*ebiten.Image
 	stage		*stage
+	dotManager  *dotManager
+	bigDotManager  *bigDotManager
 }
 
 func newScene(st *stage) *scene{
@@ -23,6 +25,8 @@ func newScene(st *stage) *scene{
 		s.stage = defaultStage
 	}
 	s.images = make(map[elem]*ebiten.Image)
+	s.dotManager = newDotManager()
+	s.bigDotManager = newBigDotManager()
 	s.loadImages()
 	s.createStage()
 	s.buildWallSurface()
@@ -49,6 +53,13 @@ func (s *scene) createStage() {
 				s.matrix[i][j] = elem(c)
 			} else{
 				s.matrix[i][j] = elem(s.stage.matrix[i][j] - 'a' + 10 )
+			}
+
+			switch s.matrix[i][j] {
+			case dotElem:
+				s.dotManager.add(i,j)
+			case bigDotElem:
+				s.bigDotManager.add(i,j)
 			}
 		}
 	}
@@ -107,5 +118,7 @@ func (s *scene) update(screen *ebiten.Image) error {
 	}
 	screen.Clear()
 	screen.DrawImage(s.wallSurface, nil)
+	s.dotManager.draw(screen)
+	s.bigDotManager.draw(screen)
 	return nil
 }
