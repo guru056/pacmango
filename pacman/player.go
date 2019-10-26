@@ -35,13 +35,13 @@ func (p *player) getCurrentImage() *ebiten.Image{
 	return p.images[p.currentImage]
 }
 
-func (p *player) draw(screen *ebiten.Image){
+func (p *player) draw(sc *ebiten.Image){
 	v := p.currPos
 	x := float64(v.y * stageBlocSize)
 	y := float64(v.x * stageBlocSize)
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(x,y)
-	screen.DrawImage(p.getCurrentImage(), op)
+	sc.DrawImage(p.getCurrentImage(), op)
 }
 
 
